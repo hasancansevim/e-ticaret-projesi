@@ -80,6 +80,8 @@ $featured_products = $stmt_feat->fetchAll(PDO::FETCH_ASSOC);
         <i class="fas fa-chevron-right"></i>
     </a>
 </div>
+
+<!-- Popüler Kategoriler -->
 <section class="container py-5">
     <div class="row text-center pt-3">
         <div class="col-lg-6 m-auto">
