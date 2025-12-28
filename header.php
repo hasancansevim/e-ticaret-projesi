@@ -66,6 +66,7 @@
 
                     <?php
                     if (session_status() == PHP_SESSION_NONE) {
+                        session_save_path(__DIR__ . '/tmp');
                         session_start();
                     }
                     $total_qty = 0;
@@ -79,10 +80,10 @@
                     <a class="nav-icon position-relative text-decoration-none" href="cart.php">
                         <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
                         <?php if ($total_qty > 0): ?>
-                        <span
-                            class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">
-                            <?php echo $total_qty; ?>
-                        </span>
+                            <span
+                                class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">
+                                <?php echo $total_qty; ?>
+                            </span>
                         <?php endif; ?>
                     </a>
                 </div>
