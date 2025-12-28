@@ -2,13 +2,13 @@
 include('header.php');
 include('./includes/db.php');
 
-// Kategorileri Çek
+// Kategoriler
 $cat_sql = "SELECT * FROM categories WHERE status = 1 LIMIT 3";
 $stmt_cat = $pdo->prepare($cat_sql);
 $stmt_cat->execute();
 $categories = $stmt_cat->fetchAll(PDO::FETCH_ASSOC);
 
-// Öne Çıkan Ürünleri Çek
+// Öne Çıkan Ürünler
 $feat_sql = "SELECT * FROM products WHERE is_featured = 1 LIMIT 3";
 $stmt_feat = $pdo->prepare($feat_sql);
 $stmt_feat->execute();
@@ -117,35 +117,42 @@ $featured_products = $stmt_feat->fetchAll(PDO::FETCH_ASSOC);
         </div>
 
         <div class="row">
-            <?php foreach ($featured_products as $feat): ?>
+            <?php if (count($featured_products) > 0): ?>
+            <?php foreach ($featured_products as $featured_product): ?>
             <div class="col-12 col-md-4 mb-4">
-                <div class="card h-100 border-0 shadow-sm" style="transition: transform 0.3s;">
-                    <div
-                        style="height: 300px; overflow: hidden; display: flex; align-items: center; justify-content: center; background: white;">
-                        <a href="shop-single.php?id=<?php echo $feat['id']; ?>">
-                            <img src="./assets/img/products/<?php echo $feat['image_url']; ?>"
-                                alt="<?php echo $feat['name']; ?>"
-                                style="max-height: 100%; max-width: 100%; object-fit: contain;">
-                        </a>
+                <div class="card h-100 border-0 shadow-sm product-wap">
+                    <div class="card rounded-0">
+                        <img class="card-img-top card-img-custom"
+                            src="assets/img/products/<?php echo $featured_product['image_url']; ?>"
+                            alt="<?php echo $featured_product['name']; ?>">
+
+                        <div
+                            class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+                            <ul class="list-unstyled">
+                                <li><a class="btn btn-success text-white mt-2"
+                                        href="shop-single.php?id=<?php echo $featured_product['id']; ?>"><i
+                                            class="far fa-eye"></i></a></li>
+                            </ul>
+                        </div>
                     </div>
-
-                    <div class="card-body d-flex flex-column text-center">
-                        <a href="shop-single.php?id=<?php echo $feat['id']; ?>"
-                            class="h5 text-decoration-none text-dark fw-bold">
-                            <?php echo $feat['name']; ?>
-                        </a>
-
-                        <p class="text-muted small">
-                            <?php echo substr($feat['description'], 0, 50) . '...'; ?>
-                        </p>
+                    <div class="card-body text-center d-flex flex-column">
+                        <a href="shop-single.php?id=<?php echo $featured_product['id']; ?>"
+                            class="h3 text-decoration-none text-dark fw-bold"><?php echo $featured_product['name']; ?></a>
 
                         <div class="mt-auto">
-                            <h5 class="text-success fw-bold"><?php echo $feat['price']; ?> ₺</h5>
+                            <p class="text-center mb-0 text-success fw-bold pt-2">
+                                <?php echo $featured_product['price']; ?> ₺
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
             <?php endforeach; ?>
+            <?php else: ?>
+            <div class="col-12">
+                <p class="text-muted">Bu kategoride başka ürün bulunamadı.</p>
+            </div>
+            <?php endif; ?>
         </div>
 
         <div class="row mt-4">

@@ -1,30 +1,21 @@
 <?php
-// BU BLOK EN TEPEDE OLMALI
-ob_start(); // Çıktı tamponlamayı başlatır (Header hatasını kesin engeller)
-session_start();
+ob_start(); // html hatası için ( yönlendirme yaparken hata alıyordum)
+session_start(); // Başka Sayfaya Geçince Sepetteki Ürünler Gitmesin Diye
 
-// --- 1. SİPARİŞİ ONAYLAMA VE SEPETİ BOŞALTMA ---
 $order_success = false;
 if (isset($_GET['action']) && $_GET['action'] == 'checkout') {
-    // Sepeti boşalt
     $_SESSION['cart'] = [];
-    // Başarılı mesajını göstermek için değişkeni true yap
     $order_success = true;
 }
 
-// --- 2. SEPETTEN SİLME İŞLEMİ ---
-// Linkten ?remove=0 gibi bir şey gelirse
 if (isset($_GET['remove']) && isset($_SESSION['cart'][$_GET['remove']])) {
     unset($_SESSION['cart'][$_GET['remove']]);
-    // Dizideki boşlukları kaydırarak kapat (indeksleri düzelt)
     $_SESSION['cart'] = array_values($_SESSION['cart']);
-    // Sayfayı temizle (header.php'den ÖNCE olduğu için artık hata vermez)
     header("Location: cart.php");
     exit;
 }
 
-// --- 3. SEPETE EKLEME İŞLEMİ ---
-include("./includes/db.php"); // DB bağlantısı burada lazım
+include("./includes/db.php");
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['product_id'])) {
 
@@ -53,14 +44,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['product_id'])) {
         }
 
         $_SESSION['cart'][] = $new_item;
-
-        // Ekleme bitince sayfayı yenile ki form tekrar gönderilmesin
         header("Location: cart.php");
         exit;
     }
 }
 
-// --- PHP İŞLEMLERİ BİTTİ, ŞİMDİ HTML BAŞLIYOR ---
 include("header.php");
 ?>
 
@@ -71,14 +59,11 @@ include("header.php");
             <?php if ($order_success): ?>
             <div class="card border-0 shadow-sm text-center py-5">
                 <div class="card-body">
-                    <div class="mb-4 text-success">
-                        <i class="fas fa-check-circle fa-5x"></i>
-                    </div>
+                    <div class="mb-4 text-success"><i class="fas fa-check-circle fa-5x"></i></div>
                     <h2 class="fw-bold text-success">Siparişiniz Alındı!</h2>
                     <p class="text-muted lead">Alışverişiniz için teşekkür ederiz. Sipariş numaranız:
                         <strong>#<?php echo rand(10000, 99999); ?></strong>
                     </p>
-                    <p>Kargoya verildiğinde size e-posta ile bilgi verilecektir.</p>
                     <a href="shop.php" class="btn btn-success btn-lg mt-3">Alışverişe Devam Et</a>
                 </div>
             </div>
@@ -87,7 +72,6 @@ include("header.php");
             <div class="alert alert-warning text-center py-5 shadow-sm border-0">
                 <i class="fas fa-shopping-basket fa-3x mb-3 text-muted"></i>
                 <h4>Sepetinizde henüz ürün yok.</h4>
-                <p class="text-muted">Hemen alışverişe başlayıp harika ürünleri keşfedin.</p>
                 <a href="shop.php" class="btn btn-success mt-3">Alışverişe Başla</a>
             </div>
 
@@ -118,9 +102,7 @@ include("header.php");
                                 <img src="assets/img/products/<?php echo $item['image']; ?>" alt=""
                                     style="width: 60px; height: auto;">
                             </td>
-                            <td class="align-middle fw-bold">
-                                <?php echo $item['name']; ?>
-                            </td>
+                            <td class="align-middle fw-bold"><?php echo $item['name']; ?></td>
                             <td class="align-middle text-muted">
                                 <small>
                                     <?php if ($item['color'] != '-')
@@ -129,20 +111,14 @@ include("header.php");
                                                 echo "Beden: " . $item['size']; ?>
                                 </small>
                             </td>
-                            <td class="align-middle">
-                                <?php echo number_format($item['price'], 2); ?> ₺
-                            </td>
-                            <td class="align-middle text-center">
-                                <?php echo $item['qty']; ?>
-                            </td>
-                            <td class="align-middle fw-bold text-success">
-                                <?php echo number_format($row_total, 2); ?> ₺
+                            <td class="align-middle"><?php echo number_format($item['price'], 2); ?> ₺</td>
+                            <td class="align-middle text-center"><?php echo $item['qty']; ?></td>
+                            <td class="align-middle fw-bold text-success"><?php echo number_format($row_total, 2); ?> ₺
                             </td>
                             <td class="align-middle">
                                 <a href="cart.php?remove=<?php echo $key; ?>" class="btn btn-danger btn-sm"
-                                    onclick="return confirm('Silmek istediğinize emin misiniz?')">
-                                    <i class="fa fa-trash"></i>
-                                </a>
+                                    onclick="return confirm('Silmek istediğinize emin misiniz?')"><i
+                                        class="fa fa-trash"></i></a>
                             </td>
                         </tr>
                         <?php endforeach; ?>
@@ -152,9 +128,8 @@ include("header.php");
 
             <div class="row mt-4">
                 <div class="col-lg-8">
-                    <a href="shop.php" class="btn btn-outline-secondary">
-                        <i class="fas fa-arrow-left"></i> Alışverişe Devam Et
-                    </a>
+                    <a href="shop.php" class="btn btn-outline-secondary"><i class="fas fa-arrow-left"></i> Alışverişe
+                        Devam Et</a>
                 </div>
                 <div class="col-lg-4">
                     <div class="card border-0 shadow-sm bg-light">
@@ -179,7 +154,6 @@ include("header.php");
                     </div>
                 </div>
             </div>
-
             <?php endif; ?>
         </div>
     </div>
@@ -187,5 +161,5 @@ include("header.php");
 
 <?php
 include("footer.php");
-ob_end_flush(); // Tamponu boşalt ve çıktıyı gönder
+ob_end_flush();
 ?>

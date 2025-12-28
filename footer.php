@@ -103,6 +103,30 @@
 <script src="assets/js/templatemo.js"></script>
 <script src="assets/js/slick.min.js"></script>
 <script src="assets/js/custom.js"></script>
+
+
+<script>
+$(document).ready(function() {
+    $('#inputModalSearch').keyup(function() {
+        var txt = $(this).val();
+
+        if (txt == '') {
+            $('#search-results').html('');
+        } else {
+            $.ajax({
+                url: "ajax_search.php",
+                method: "POST",
+                data: {
+                    query: txt
+                },
+                success: function(data) {
+                    $('#search-results').html(data);
+                }
+            });
+        }
+    });
+});
+</script>
 </body>
 
 </html>
