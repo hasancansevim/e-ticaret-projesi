@@ -151,3 +151,52 @@ body, .bg-light {
 .card.h-100 {
     height: 100% !important;
 }
+
+
+/* RESPONSIVE */
+@media (max_width: 991px) {
+
+    /* Kategoriler - Sol Menü */
+    .col-lg-3 {
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .product-image-container {
+        height: 350px !important;
+    }
+
+    .product-image-container img {
+        padding: 10px;
+    }
+
+    .card-img-wrap, .card-img-custom {
+        height: 250px;
+    }
+
+    .table-responsive {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .table td img {
+        width: 40px !important;
+    }
+
+    h1.h2, .h2 {
+        font-size: 1.5rem;
+    }
+
+    h1.h1 {
+        font-size: 1.8rem;
+    }
+
+
+    .navbar-brand {
+        font-size: 1.5rem;
+    }
+}
