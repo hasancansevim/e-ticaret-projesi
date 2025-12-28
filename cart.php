@@ -10,7 +10,6 @@ $error_msg = "";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['complete_order'])) {
 
-    // Form verilerini al
     $name = htmlspecialchars(trim($_POST['name']));
     $email = htmlspecialchars(trim($_POST['email']));
     $address = htmlspecialchars(trim($_POST['address']));
@@ -24,21 +23,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['complete_order'])) {
         try {
             $pdo->beginTransaction();
 
-            // 1. Siparişi Kaydet
             $stmt = $pdo->prepare("INSERT INTO orders (customer_name, customer_email, customer_phone, customer_address, total_amount) VALUES (?, ?, ?, ?, ?)");
-            // Telefonu formdan kaldırdık basitleştirmek için, buraya boş string veya varsayılan gönderiyoruz
+            // Telefon Numarasını Formdan Kaldırdım Onun İçin Belirtilmedi Geçiyorum
             $stmt->execute([$name, $email, 'Belirtilmedi', $address, $total_amount]);
             $order_id = $pdo->lastInsertId();
 
-            // 2. Ürünleri Kaydet ve Stoktan Düş
             foreach ($_SESSION['cart'] as $item) {
-                // Ürün Detayı
                 $stmt_item = $pdo->prepare("INSERT INTO order_items (order_id, product_id, quantity, unit_price, selected_color, selected_size) VALUES (?, ?, ?, ?, ?, ?)");
                 $stmt_item->execute([$order_id, $item['id'], $item['qty'], $item['price'], $item['color'], $item['size']]);
-
-                // Stok Düşme
-                $stmt_stock = $pdo->prepare("UPDATE products SET stock_qty = stock_qty - ? WHERE id = ?");
-                $stmt_stock->execute([$item['qty'], $item['id']]);
             }
 
             $pdo->commit();
@@ -57,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['complete_order'])) {
 // --- İŞLEM 2: SEPETTEN ÜRÜN SİLME ---
 if (isset($_GET['remove']) && isset($_SESSION['cart'][$_GET['remove']])) {
     unset($_SESSION['cart'][$_GET['remove']]);
-    $_SESSION['cart'] = array_values($_SESSION['cart']); // İndeksleri düzelt
+    $_SESSION['cart'] = array_values($_SESSION['cart']);
     header("Location: cart.php");
     exit;
 }
@@ -89,7 +81,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['a
             $_SESSION['cart'] = [];
         $_SESSION['cart'][] = $new_item;
 
-        // Eğer "Satın Al" dediyse direkt sepete kalsın (veya yönlendirsin)
         header("Location: cart.php");
         exit;
     }
