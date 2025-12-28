@@ -21,21 +21,6 @@ $products = $stmt_product->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
-<!-- CSS -->
-<style>
-.card-img-custom {
-    width: 100%;
-    height: 300px;
-    object-fit: contain;
-    background-color: #fff;
-    padding: 10px;
-}
-
-.card.h-100 {
-    height: 100% !important;
-}
-</style>
-
 <div class="container py-5">
     <div class="row">
 

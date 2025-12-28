@@ -7,40 +7,39 @@
                 <ul class="list-unstyled text-light footer-link-list">
                     <li>
                         <i class="fas fa-map-marker-alt fa-fw"></i>
-                        123 Consectetur at ligula 10660
+                        Maslak Mah. Büyükdere Cad. No: 123<br> Sarıyer / İstanbul
                     </li>
                     <li>
                         <i class="fa fa-phone fa-fw"></i>
-                        <a class="text-decoration-none" href="tel:010-020-0340">010-020-0340</a>
+                        <a class="text-decoration-none" href="tel:02121234567">0212 123 45 67</a>
                     </li>
                     <li>
                         <i class="fa fa-envelope fa-fw"></i>
-                        <a class="text-decoration-none" href="mailto:info@company.com">info@company.com</a>
+                        <a class="text-decoration-none" href="mailto:info@zayshop.com">info@zayshop.com</a>
                     </li>
                 </ul>
             </div>
 
             <div class="col-md-4 pt-5">
-                <h2 class="h2 text-light border-bottom pb-3 border-light">Products</h2>
+                <h2 class="h2 text-light border-bottom pb-3 border-light">Ürünler</h2>
                 <ul class="list-unstyled text-light footer-link-list">
-                    <li><a class="text-decoration-none" href="#">Luxury</a></li>
-                    <li><a class="text-decoration-none" href="#">Sport Wear</a></li>
-                    <li><a class="text-decoration-none" href="#">Men's Shoes</a></li>
-                    <li><a class="text-decoration-none" href="#">Women's Shoes</a></li>
-                    <li><a class="text-decoration-none" href="#">Popular Dress</a></li>
-                    <li><a class="text-decoration-none" href="#">Gym Accessories</a></li>
-                    <li><a class="text-decoration-none" href="#">Sport Shoes</a></li>
+                    <li><a class="text-decoration-none" href="shop.php">Tüm Ürünler</a></li>
+                    <li><a class="text-decoration-none" href="shop.php?category_id=1">Saatler</a></li>
+                    <li><a class="text-decoration-none" href="shop.php?category_id=2">Ayakkabılar</a></li>
+                    <li><a class="text-decoration-none" href="shop.php?category_id=3">Aksesuarlar</a></li>
+                    <li><a class="text-decoration-none" href="shop.php">Spor Giyim</a></li>
+                    <li><a class="text-decoration-none" href="shop.php">Gözlükler</a></li>
                 </ul>
             </div>
 
             <div class="col-md-4 pt-5">
-                <h2 class="h2 text-light border-bottom pb-3 border-light">Further Info</h2>
+                <h2 class="h2 text-light border-bottom pb-3 border-light">Kurumsal</h2>
                 <ul class="list-unstyled text-light footer-link-list">
-                    <li><a class="text-decoration-none" href="index.php">Home</a></li>
-                    <li><a class="text-decoration-none" href="about.php">About Us</a></li>
-                    <li><a class="text-decoration-none" href="shop.php">Shop Locations</a></li>
-                    <li><a class="text-decoration-none" href="#">FAQs</a></li>
-                    <li><a class="text-decoration-none" href="contact.php">Contact</a></li>
+                    <li><a class="text-decoration-none" href="index.php">Anasayfa</a></li>
+                    <li><a class="text-decoration-none" href="about.php">Hakkımızda</a></li>
+                    <li><a class="text-decoration-none" href="contact.php">İletişim</a></li>
+                    <li><a class="text-decoration-none" href="#">Sıkça Sorulan Sorular</a></li>
+                    <li><a class="text-decoration-none" href="#">İade ve Değişim</a></li>
                 </ul>
             </div>
 
@@ -50,6 +49,7 @@
             <div class="col-12 mb-3">
                 <div class="w-100 my-3 border-top border-light"></div>
             </div>
+
             <div class="col-auto me-auto">
                 <ul class="list-inline text-left footer-icons">
                     <li class="list-inline-item border border-light rounded-circle text-center">
@@ -70,12 +70,13 @@
                     </li>
                 </ul>
             </div>
+
             <div class="col-auto">
-                <label class="sr-only" for="subscribeEmail">Email address</label>
+                <label class="sr-only" for="subscribeEmail">E-Posta Adresi</label>
                 <div class="input-group mb-2">
                     <input type="text" class="form-control bg-dark border-light" id="subscribeEmail"
-                        placeholder="Email address">
-                    <div class="input-group-text btn-success text-light">Subscribe</div>
+                        placeholder="E-Posta Adresiniz">
+                    <div class="input-group-text btn-success text-light">Abone Ol</div>
                 </div>
             </div>
         </div>
@@ -86,8 +87,9 @@
             <div class="row pt-2">
                 <div class="col-12">
                     <p class="text-left text-light">
-                        Copyright &copy; 2021 Company Name
+                        Copyright &copy; 2025 Zay Shop
                         | Designed by <a rel="sponsored" href="https://templatemo.com" target="_blank">TemplateMo</a>
+                        | Developer: <strong>Hasan Can Sevim</strong>
                     </p>
                 </div>
             </div>
@@ -95,50 +97,12 @@
     </div>
 
 </footer>
-<!-- End Footer -->
-
-<!-- Start Script -->
 <script src="assets/js/jquery-1.11.0.min.js"></script>
 <script src="assets/js/jquery-migrate-1.2.1.min.js"></script>
 <script src="assets/js/bootstrap.bundle.min.js"></script>
 <script src="assets/js/templatemo.js"></script>
-<script src="assets/js/custom.js"></script>
-<!-- End Script -->
-
-<!-- Start Slider Script -->
 <script src="assets/js/slick.min.js"></script>
-<script>
-    $('#carousel-related-product').slick({
-        infinite: true,
-        arrows: false,
-        slidesToShow: 4,
-        slidesToScroll: 3,
-        dots: true,
-        responsive: [{
-            breakpoint: 1024,
-            settings: {
-                slidesToShow: 3,
-                slidesToScroll: 3
-            }
-        },
-        {
-            breakpoint: 600,
-            settings: {
-                slidesToShow: 2,
-                slidesToScroll: 3
-            }
-        },
-        {
-            breakpoint: 480,
-            settings: {
-                slidesToShow: 2,
-                slidesToScroll: 3
-            }
-        }
-        ]
-    });
-</script>
-<!-- End Slider Script -->
+<script src="assets/js/custom.js"></script>
 </body>
 
 </html>
