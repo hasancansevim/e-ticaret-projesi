@@ -52,6 +52,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="contact.php">İletişim</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="rapor.php">Rapor</a>
+                        </li>
                     </ul>
                 </div>
 

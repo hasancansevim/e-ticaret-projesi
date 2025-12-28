@@ -35,7 +35,7 @@
             <div class="col-md-4 pt-5">
                 <h2 class="h2 text-light border-bottom pb-3 border-light">Kurumsal</h2>
                 <ul class="list-unstyled text-light footer-link-list">
-                    <li><a class="text-decoration-none" href="index.php">Anasayfa</a></li>
+                    <li><a class="text-decoration-none" href="index.php">Ana Sayfa</a></li>
                     <li><a class="text-decoration-none" href="about.php">Hakkımızda</a></li>
                     <li><a class="text-decoration-none" href="contact.php">İletişim</a></li>
                     <li><a class="text-decoration-none" href="#">Sıkça Sorulan Sorular</a></li>
@@ -45,41 +45,7 @@
 
         </div>
 
-        <div class="row text-light mb-4">
-            <div class="col-12 mb-3">
-                <div class="w-100 my-3 border-top border-light"></div>
-            </div>
 
-            <div class="col-auto me-auto">
-                <ul class="list-inline text-left footer-icons">
-                    <li class="list-inline-item border border-light rounded-circle text-center">
-                        <a class="text-light text-decoration-none" target="_blank" href="http://facebook.com/"><i
-                                class="fab fa-facebook-f fa-lg fa-fw"></i></a>
-                    </li>
-                    <li class="list-inline-item border border-light rounded-circle text-center">
-                        <a class="text-light text-decoration-none" target="_blank" href="https://www.instagram.com/"><i
-                                class="fab fa-instagram fa-lg fa-fw"></i></a>
-                    </li>
-                    <li class="list-inline-item border border-light rounded-circle text-center">
-                        <a class="text-light text-decoration-none" target="_blank" href="https://twitter.com/"><i
-                                class="fab fa-twitter fa-lg fa-fw"></i></a>
-                    </li>
-                    <li class="list-inline-item border border-light rounded-circle text-center">
-                        <a class="text-light text-decoration-none" target="_blank" href="https://www.linkedin.com/"><i
-                                class="fab fa-linkedin fa-lg fa-fw"></i></a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="col-auto">
-                <label class="sr-only" for="subscribeEmail">E-Posta Adresi</label>
-                <div class="input-group mb-2">
-                    <input type="text" class="form-control bg-dark border-light" id="subscribeEmail"
-                        placeholder="E-Posta Adresiniz">
-                    <div class="input-group-text btn-success text-light">Abone Ol</div>
-                </div>
-            </div>
-        </div>
     </div>
 
     <div class="w-100 bg-black py-3">
@@ -89,7 +55,6 @@
                     <p class="text-left text-light">
                         Copyright &copy; 2025 Zay Shop
                         | Designed by <a rel="sponsored" href="https://templatemo.com" target="_blank">TemplateMo</a>
-                        | Developer: <strong>Hasan Can Sevim</strong>
                     </p>
                 </div>
             </div>
