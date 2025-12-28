@@ -7,7 +7,7 @@
                 <ul class="list-unstyled text-light footer-link-list">
                     <li>
                         <i class="fas fa-map-marker-alt fa-fw"></i>
-                        Maslak Mah. Büyükdere Cad. No: 123<br> Sarıyer / İstanbul
+                        Meşelik Kampüsü, Osmangazi Üniversitesi, 26040 Eskişehir
                     </li>
                     <li>
                         <i class="fa fa-phone fa-fw"></i>
@@ -71,26 +71,26 @@
 
 
 <script>
-$(document).ready(function() {
-    $('#inputModalSearch').keyup(function() {
-        var txt = $(this).val();
+    $(document).ready(function () {
+        $('#inputModalSearch').keyup(function () {
+            var txt = $(this).val();
 
-        if (txt == '') {
-            $('#search-results').html('');
-        } else {
-            $.ajax({
-                url: "ajax_search.php",
-                method: "POST",
-                data: {
-                    query: txt
-                },
-                success: function(data) {
-                    $('#search-results').html(data);
-                }
-            });
-        }
+            if (txt == '') {
+                $('#search-results').html('');
+            } else {
+                $.ajax({
+                    url: "ajax_search.php",
+                    method: "POST",
+                    data: {
+                        query: txt
+                    },
+                    success: function (data) {
+                        $('#search-results').html(data);
+                    }
+                });
+            }
+        });
     });
-});
 </script>
 </body>
 

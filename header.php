@@ -1,3 +1,6 @@
+<?php
+require_once './includes/session_db.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -66,8 +69,7 @@
 
                     <?php
                     if (session_status() == PHP_SESSION_NONE) {
-                        session_save_path(__DIR__ . '/tmp');
-                        session_start();
+                        include './includes/session_db.php';
                     }
                     $total_qty = 0;
                     if (isset($_SESSION['cart'])) {

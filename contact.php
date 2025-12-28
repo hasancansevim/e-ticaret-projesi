@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $subject = htmlspecialchars($_POST["subject"]);
     $message = htmlspecialchars($_POST["message"]);
 
-    if (!empty($name) && !empty($email) && empty($$message)) {
+    if (!empty($name) && !empty($email) && empty($message)) {
         $sql = "INSERT INTO messages (name,email,subject,message) VALUES (:name,:email,:subject,:message)";
         $stmt = $pdo->prepare($sql);
         $result = $stmt->execute([
@@ -28,24 +28,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <div class="container-fluid bg-light py-5">
     <div class="col-md-6 m-auto text-center">
         <h1 class="h1">İletişim</h1>
-        <p>
-            Sorularınız, önerileriniz veya işbirlikleri için bize her zaman ulaşabilirsiniz.
-        </p>
+        <p>Sorularınız, önerileriniz veya işbirlikleri için bize her zaman ulaşabilirsiniz.</p>
     </div>
 </div>
 
-<div id="mapid" style="width: 100%; height: 300px;"></div>
+<div class="position-relative w-100" style="height: 300px;">
+
+    <div id="map-loader"
+        class="position-absolute top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center bg-light"
+        style="z-index: 1000; transition: opacity 0.5s ease;">
+        <div class="text-center">
+            <div class="spinner-border text-success" role="status"></div>
+            <p class="mt-2 text-muted small fw-bold">Harita Yükleniyor...</p>
+        </div>
+    </div>
+
+    <div id="mapid" class="w-100 h-100"></div>
+
+</div>
 
 <div class="container py-5">
     <div class="row py-5">
-
         <?php if ($message_sent): ?>
-        <div class="col-12 mb-4">
-            <div class="alert alert-success text-center">
-                <i class="fa fa-check-circle fa-2x"></i><br>
-                Mesajınız başarıyla bize ulaştı! En kısa sürede dönüş yapacağız.
+            <div class="col-12 mb-4">
+                <div class="alert alert-success text-center">
+                    <i class="fa fa-check-circle fa-2x"></i><br>
+                    Mesajınız başarıyla bize ulaştı! En kısa sürede dönüş yapacağız.
+                </div>
             </div>
-        </div>
         <?php endif; ?>
 
         <form class="col-md-9 m-auto" method="post" role="form">
@@ -79,21 +89,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </div>
 
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-    if (document.getElementById('mapid')) {
-        // İstanbul Koordinatları (41.0082, 28.9784)
-        var mymap = L.map('mapid').setView([41.0082, 28.9784], 13);
+    document.addEventListener("DOMContentLoaded", function () {
+        if (document.getElementById('mapid')) {
+            // Konum : Eskişehir Osmangazi Üniversitesi
+            var mymap = L.map('mapid').setView([39.7505, 30.4950], 13);
+            var tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '© OpenStreetMap'
+            });
 
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '© OpenStreetMap'
-        }).addTo(mymap);
+            tiles.addTo(mymap);
 
-        L.marker([41.0082, 28.9784]).addTo(mymap)
-            .bindPopup("<b>Zay Shop</b><br />Merkez Ofisimiz.").openPopup();
-    }
-});
+            L.marker([39.7505, 30.4950]).addTo(mymap)
+                .bindPopup("<b>Zay Shop</b><br />Eskişehir Merkez Ofis").openPopup();
+
+            // Yükleme bitince loader da bitecek
+            tiles.on('load', function () {
+                var loader = document.getElementById('map-loader');
+                if (loader) {
+                    loader.style.opacity = '0';
+                    setTimeout(function () {
+                        loader.style.display = 'none';
+                    }, 500);
+                }
+            });
+        }
+    });
 </script>
 
 <?php include("footer.php"); ?>

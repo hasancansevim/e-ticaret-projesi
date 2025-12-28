@@ -1,12 +1,9 @@
 <?php
 ob_start(); // html hatası için ( yönlendirme yaparken hata alıyordum)
-session_save_path(__DIR__ . '/tmp');
-session_start(); // Başka Sayfaya Geçince Sepetteki Ürünler Gitmesin Diye
+require_once './includes/db.php';
+require_once './includes/session_db.php';
 
-error_reporting(E_ALL); // sunucuda hataları görmek için
-ini_set('display_errors', 1);
-
-include './includes/db.php';
+error_reporting(E_ALL);
 
 // --- İŞLEM 1: SİPARİŞİ TAMAMLAMA (Form Gönderildiyse) ---
 $order_success = false;

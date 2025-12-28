@@ -1,5 +1,4 @@
 <?php
-include("header.php");
 include("./includes/db.php");
 
 if (isset($_GET['id'])) {
@@ -46,6 +45,7 @@ if (isset($_GET['id'])) {
     header("Location: shop.php");
     exit;
 }
+include("header.php");
 ?>
 
 <section class="bg-light">
@@ -92,33 +92,33 @@ if (isset($_GET['id'])) {
                             <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
 
                             <?php if (!empty($renkler)): ?>
-                            <div class="row pb-3">
-                                <div class="col-3">
-                                    <h6>Renk:</h6>
+                                <div class="row pb-3">
+                                    <div class="col-3">
+                                        <h6>Renk:</h6>
+                                    </div>
+                                    <div class="col-9">
+                                        <select class="form-select" name="color">
+                                            <?php foreach ($renkler as $renk): ?>
+                                                <option value="<?php echo $renk; ?>"><?php echo $renk; ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
                                 </div>
-                                <div class="col-9">
-                                    <select class="form-select" name="color">
-                                        <?php foreach ($renkler as $renk): ?>
-                                        <option value="<?php echo $renk; ?>"><?php echo $renk; ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
-                            </div>
                             <?php endif; ?>
 
                             <?php if (!empty($bedenler)): ?>
-                            <div class="row pb-3">
-                                <div class="col-3">
-                                    <h6><?php echo $beden_etiketi; ?>:</h6>
+                                <div class="row pb-3">
+                                    <div class="col-3">
+                                        <h6><?php echo $beden_etiketi; ?>:</h6>
+                                    </div>
+                                    <div class="col-9">
+                                        <select class="form-select" name="size">
+                                            <?php foreach ($bedenler as $beden): ?>
+                                                <option value="<?php echo $beden; ?>"><?php echo $beden; ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
                                 </div>
-                                <div class="col-9">
-                                    <select class="form-select" name="size">
-                                        <?php foreach ($bedenler as $beden): ?>
-                                        <option value="<?php echo $beden; ?>"><?php echo $beden; ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
-                            </div>
                             <?php endif; ?>
 
                             <div class="row pb-3">
@@ -164,38 +164,38 @@ if (isset($_GET['id'])) {
         </div>
         <div class="row">
             <?php if (count($featured_products) > 0): ?>
-            <?php foreach ($featured_products as $featured_product): ?>
-            <div class="col-12 col-md-4 mb-4">
-                <div class="card h-100 border-0 shadow-sm product-wap">
-                    <div class="card rounded-0">
-                        <img class="card-img-top card-img-custom"
-                            src="assets/img/products/<?php echo $featured_product['image_url']; ?>"
-                            alt="<?php echo $featured_product['name']; ?>">
-                        <div
-                            class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-                            <ul class="list-unstyled">
-                                <li><a class="btn btn-success text-white mt-2"
-                                        href="shop-single.php?id=<?php echo $featured_product['id']; ?>"><i
-                                            class="far fa-eye"></i></a></li>
-                            </ul>
+                <?php foreach ($featured_products as $featured_product): ?>
+                    <div class="col-12 col-md-4 mb-4">
+                        <div class="card h-100 border-0 shadow-sm product-wap">
+                            <div class="card rounded-0">
+                                <img class="card-img-top card-img-custom"
+                                    src="assets/img/products/<?php echo $featured_product['image_url']; ?>"
+                                    alt="<?php echo $featured_product['name']; ?>">
+                                <div
+                                    class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+                                    <ul class="list-unstyled">
+                                        <li><a class="btn btn-success text-white mt-2"
+                                                href="shop-single.php?id=<?php echo $featured_product['id']; ?>"><i
+                                                    class="far fa-eye"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-body text-center d-flex flex-column">
+                                <a href="shop-single.php?id=<?php echo $featured_product['id']; ?>"
+                                    class="h3 text-decoration-none text-dark fw-bold"><?php echo $featured_product['name']; ?></a>
+                                <div class="mt-auto">
+                                    <p class="text-center mb-0 text-success fw-bold pt-2">
+                                        <?php echo $featured_product['price']; ?> ₺
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="card-body text-center d-flex flex-column">
-                        <a href="shop-single.php?id=<?php echo $featured_product['id']; ?>"
-                            class="h3 text-decoration-none text-dark fw-bold"><?php echo $featured_product['name']; ?></a>
-                        <div class="mt-auto">
-                            <p class="text-center mb-0 text-success fw-bold pt-2">
-                                <?php echo $featured_product['price']; ?> ₺
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <?php endforeach; ?>
+                <?php endforeach; ?>
             <?php else: ?>
-            <div class="col-12">
-                <p class="text-muted">Bu kategoride başka ürün bulunamadı.</p>
-            </div>
+                <div class="col-12">
+                    <p class="text-muted">Bu kategoride başka ürün bulunamadı.</p>
+                </div>
             <?php endif; ?>
         </div>
     </div>
