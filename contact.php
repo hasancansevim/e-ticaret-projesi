@@ -81,7 +81,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-    // Harita kutusu var mı kontrol et
     if (document.getElementById('mapid')) {
         // İstanbul Koordinatları (41.0082, 28.9784)
         var mymap = L.map('mapid').setView([41.0082, 28.9784], 13);
