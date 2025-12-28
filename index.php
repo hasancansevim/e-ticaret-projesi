@@ -102,54 +102,65 @@ $featured_products = $stmt_feat->fetchAll(PDO::FETCH_ASSOC);
     </div>
     <div class="row">
         <?php foreach ($categories as $category): ?>
-            <div class="col-12 col-md-4 p-5 mt-3">
-                <a href="#"><img src="./assets/img/<?php echo $category['id'] ?>"
-                        class="rounded-circle img-fluid border"></a>
-                <h5 class="text-center mt-3 mb-3"><?php echo $category['name'] ?></h5>
-                <p class="text-center"><a class="btn btn-success" href="shop.php?<?php echo $category['id']; ?>">Alışverişe
-                        Başla</a></p>
-            </div>
+        <div class="col-12 col-md-4 p-5 mt-3">
+            <a href="#"><img src="./assets/img/<?php echo $category['image_url'] ?>"
+                    class="rounded-circle img-fluid border"></a>
+            <h5 class="text-center mt-3 mb-3"><?php echo $category['name'] ?></h5>
+            <p class="text-center"><a class="btn btn-success" href="shop.php?<?php echo $category['id']; ?>">Alışverişe
+                    Başla</a></p>
+        </div>
         <?php endforeach; ?>
     </div>
 </section>
 <!-- End Categories of The Month -->
 
 
-<!-- Start Featured Product -->
-<section class="bg-light">
+<section class="bg-light py-5">
     <div class="container py-5">
+
         <div class="row text-center py-3">
             <div class="col-lg-6 m-auto">
-                <h1 class="h1">Öne Çıkan Ürünler</h1>
-                <p>
-                    Sizin için seçtiğimiz en özel ürünler.
+                <h1 class="h1 fw-bold text-success">Öne Çıkan Fırsatlar</h1>
+                <p class="text-muted">
+                    Kalite ve şıklığı bir araya getiren, sizin için özel seçilmiş koleksiyonumuz.
                 </p>
             </div>
         </div>
+
         <div class="row">
             <?php foreach ($featured_products as $feat): ?>
-                <div class="col-12 col-md-4 mb-4">
-                    <div class="card h-100">
-                        <a href="shop-single.php?id=<?php echo $feat['id']; ?>">
-                            <img src="./assets/img/<?php echo $feat['image_url']; ?>" class="card-img-top" alt="...">
-                        </a>
-                        <div class="card-body">
+            <div class="col-12 col-md-4 mb-4">
 
+                <div class="card h-100 card-hover-effect">
+
+                    <a href="shop-single.php?id=<?php echo $feat['id']; ?>" class="product-image-box">
+                        <img src="./assets/img/products/<?php echo $feat['image_url']; ?>"
+                            alt="<?php echo $feat['name']; ?>">
+                    </a>
+
+                    <div class="card-body d-flex flex-column text-center p-4">
+                        <a href="shop-single.php?id=<?php echo $feat['id']; ?>" class="product-title">
+                            <?php echo $feat['name']; ?>
+                        </a>
+
+                        <p class="text-muted small mb-3">
+                            <?php echo substr($feat['description'], 0, 60) . '...'; ?>
+                        </p>
+
+                        <div class="mt-auto">
+                            <h5 class="product-price mb-3"><?php echo $feat['price']; ?> ₺</h5>
                             <a href="shop-single.php?id=<?php echo $feat['id']; ?>"
-                                class="h2 text-decoration-none text-dark">
-                                <?php echo $feat['name']; ?>
+                                class="btn btn-success btn-rounded shadow-sm">
+                                <i></i> Ürünü İncele
                             </a>
-                            <p class="card-text">
-                                <?php echo substr($feat['description'], 0, 80) . '...'; ?>
-                            </p>
-                            <strong>
-                                <li class="text-muted text-right"><?php echo $feat['price']; ?> ₺</li>
-                            </strong>
                         </div>
+
                     </div>
                 </div>
+            </div>
             <?php endforeach; ?>
         </div>
     </div>
 </section>
+
 <?php include('footer.php'); ?>

@@ -24,6 +24,98 @@
     <!-- Slick -->
     <link rel="stylesheet" type="text/css" href="assets/css/slick.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/slick-theme.css">
+
+    <style>
+    .card-img-custom {
+        width: 100%;
+        height: 300px;
+        object-fit: contain;
+        background-color: #fff;
+        padding: 10px;
+    }
+
+    .product-image-container {
+        height: 500px !important;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #fff;
+        border: 1px solid #eee;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .product-image-container img {
+        max-height: 100%;
+        max-width: 100%;
+        object-fit: contain;
+    }
+
+    .card-hover-effect {
+        transition: all 0.3s ease;
+        border: none !important;
+        border-radius: 15px !important;
+        background: #fff;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+
+
+    .card-hover-effect:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15) !important;
+    }
+
+
+    .product-image-box {
+        height: 350px;
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        position: relative;
+        border-bottom: 1px solid #f1f1f1;
+    }
+
+    .product-image-box img {
+        max-height: 100%;
+        max-width: 100%;
+        object-fit: contain;
+        transition: transform 0.5s ease;
+    }
+
+
+    .card-hover-effect:hover .product-image-box img {
+        transform: scale(1.08);
+    }
+
+
+    .product-title {
+        font-weight: 700;
+        font-size: 1.2rem;
+        color: #2c3e50;
+        text-decoration: none !important;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .product-price {
+        font-size: 1.3rem;
+        font-weight: 800;
+        color: #198754;
+    }
+
+
+    .btn-rounded {
+        border-radius: 50px;
+        padding: 8px 25px;
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        letter-spacing: 1px;
+    }
+    </style>
 </head>
 
 <body>
@@ -49,14 +141,15 @@
                             <a class="nav-link" href="index.php">Ana Sayfa</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="about.php">Hakkımızda</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="shop.php">Alışveriş</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="contact.php">İletişim</a>
+                            <a class="nav-link" href="about.php">Hakkımızda</a>
                         </li>
+
+                        <!-- <li class="nav-item">
+                            <a class="nav-link" href="contact.php">İletişim</a>
+                        </li> -->
                     </ul>
                 </div>
                 <div class="navbar align-self-center d-flex">
@@ -77,11 +170,11 @@
                         <span
                             class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">7</span>
                     </a>
-                    <a class="nav-icon position-relative text-decoration-none" href="#">
+                    <!-- <a class="nav-icon position-relative text-decoration-none" href="#">
                         <i class="fa fa-fw fa-user text-dark mr-3"></i>
                         <span
                             class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">+99</span>
-                    </a>
+                    </a> -->
                 </div>
             </div>
 

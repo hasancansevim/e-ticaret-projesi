@@ -34,7 +34,7 @@ if (isset($_GET['id'])) {
             <div class="col-lg-5 mt-5">
                 <div class="card mb-3 shadow-sm border-0">
                     <div class="product-image-container">
-                        <img class="card-img img-fluid" src="assets/img/<?php echo $product['image_url']; ?>"
+                        <img class="card-img img-fluid" src="assets/img/products/<?php echo $product['image_url']; ?>"
                             alt="Ürün Fotoğrafı" id="product-detail">
                     </div>
                 </div>
@@ -102,39 +102,41 @@ if (isset($_GET['id'])) {
 
         <div class="row">
             <?php if (count($featured_products) > 0): ?>
-                <?php foreach ($featured_products as $featured_product): ?>
-                    <div class="col-12 col-md-4 mb-4">
-                        <div class="card h-100 border-0 shadow-sm product-wap">
-                            <div class="card rounded-0">
-                                <img class="card-img rounded-0 img-fluid"
-                                    src="assets/img/<?php echo $featured_product['image_url']; ?>">
-                                <div
-                                    class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-                                    <ul class="list-unstyled">
-                                        <li><a class="btn btn-success text-white mt-2"
-                                                href="shop-single.php?id=<?php echo $featured_product['id']; ?>"><i
-                                                    class="far fa-eye"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="card-body text-center">
-                                <a href="shop-single.php?id=<?php echo $featured_product['id']; ?>"
-                                    class="h3 text-decoration-none text-dark fw-bold"><?php echo $featured_product['name']; ?></a>
-                                <p class="text-muted mb-2 mt-2" style="font-size: 0.9rem;">
-                                    <?php echo substr($featured_product['description'], 0, 50) . '...'; ?>
-                                </p>
-                                <p class="text-center mb-0 text-success fw-bold"><?php echo $featured_product['price']; ?> ₺</p>
-                            </div>
+            <?php foreach ($featured_products as $featured_product): ?>
+            <div class="col-12 col-md-4 mb-4">
+                <div class="card h-100 border-0 shadow-sm product-wap">
+                    <div class="card rounded-0">
+                        <img class="card-img-top card-img-custom"
+                            src="assets/img/products/<?php echo $featured_product['image_url']; ?>"
+                            alt="<?php echo $featured_product['name']; ?>">
+                        <div
+                            class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+                            <ul class="list-unstyled">
+                                <li><a class="btn btn-success text-white mt-2"
+                                        href="shop-single.php?id=<?php echo $featured_product['id']; ?>"><i
+                                            class="far fa-eye"></i></a></li>
+                            </ul>
                         </div>
                     </div>
-                <?php endforeach; ?>
-            <?php else: ?>
-                <div class="col-12">
-                    <p class="text-muted">Bu kategoride başka ürün bulunamadı.</p>
+                    <div class="card-body text-center d-flex flex-column">
+                        <a href="shop-single.php?id=<?php echo $featured_product['id']; ?>"
+                            class="h3 text-decoration-none text-dark fw-bold"><?php echo $featured_product['name']; ?></a>
+
+                        <div class="mt-auto">
+                            <p class="text-center mb-0 text-success fw-bold pt-2">
+                                <?php echo $featured_product['price']; ?> ₺
+                            </p>
+                        </div>
+                    </div>
                 </div>
+            </div>
+            <?php endforeach; ?>
+            <?php else: ?>
+            <div class="col-12">
+                <p class="text-muted">Bu kategoride başka ürün bulunamadı.</p>
+            </div>
             <?php endif; ?>
         </div>
     </div>
 </section>
-
 <?php include("footer.php"); ?>

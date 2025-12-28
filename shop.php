@@ -2,13 +2,11 @@
 include 'header.php';
 include './includes/db.php';
 
-// Kategorileri Çek
 $category_sql = "SELECT * FROM categories WHERE status=1";
 $stmt_category = $pdo->prepare($category_sql);
 $stmt_category->execute();
 $categories = $stmt_category->fetchAll(PDO::FETCH_ASSOC);
 
-// Ürünleri Çek
 if (isset($_GET['category_id'])) {
     $category_id = $_GET['category_id'];
     $product_sql = "SELECT * FROM products WHERE category_id = :category_id";
@@ -23,7 +21,21 @@ $products = $stmt_product->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
-<!-- Start Content -->
+<!-- CSS -->
+<style>
+.card-img-custom {
+    width: 100%;
+    height: 300px;
+    object-fit: contain;
+    background-color: #fff;
+    padding: 10px;
+}
+
+.card.h-100 {
+    height: 100% !important;
+}
+</style>
+
 <div class="container py-5">
     <div class="row">
 
@@ -36,39 +48,16 @@ $products = $stmt_product->fetchAll(PDO::FETCH_ASSOC);
                         <i class="fa fa-fw fa-chevron-circle-down mt-1"></i>
                     </a>
                     <ul class="collapse show list-unstyled pl-3">
-                        <li><a class="text-decoration-none" href="#">Tüm Ürünler</a></li>
+                        <li><a class="text-decoration-none" href="shop.php"><strong>Tüm Ürünler</strong></a></li>
                         <?php foreach ($categories as $category): ?>
-                            <li>
-                                <a class="text-decoration-none" href="shop.php?category_id=<?php echo $category['id'] ?>">
-                                    <?php echo $category['name'] ?>
-                                </a>
-                            </li>
+                        <li>
+                            <a class="text-decoration-none" href="shop.php?category_id=<?php echo $category['id']; ?>">
+                                <?php echo $category['name']; ?>
+                            </a>
+                        </li>
                         <?php endforeach; ?>
-
                     </ul>
                 </li>
-
-                <!-- <li class="pb-3">
-                    <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
-                        Sale
-                        <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
-                    </a>
-                    <ul id="collapseTwo" class="collapse list-unstyled pl-3">
-                        <li><a class="text-decoration-none" href="#">Sport</a></li>
-                        <li><a class="text-decoration-none" href="#">Luxury</a></li>
-                    </ul>
-                </li>
-                <li class="pb-3">
-                    <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
-                        Ürün
-                        <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
-                    </a>
-                    <ul id="collapseThree" class="collapse list-unstyled pl-3">
-                        <li><a class="text-decoration-none" href="#">Çanta</a></li>
-                        <li><a class="text-decoration-none" href="#">Kazak</a></li>
-                        <li><a class="text-decoration-none" href="#">Sweat</a></li>
-                    </ul>
-                </li> -->
             </ul>
         </div>
 
@@ -77,100 +66,45 @@ $products = $stmt_product->fetchAll(PDO::FETCH_ASSOC);
                 <div class="col-md-6">
                     <ul class="list-inline shop-top-menu pb-3 pt-1">
                         <li class="list-inline-item">
-                            <a class="h3 text-dark text-decoration-none mr-3" href="#">Tümü</a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a class="h3 text-dark text-decoration-none mr-3" href="#">Erkek</a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a class="h3 text-dark text-decoration-none" href="#">Kadın</a>
+                            <a class="h3 text-dark text-decoration-none mr-3" href="shop.php">Ürünler</a>
                         </li>
                     </ul>
-                </div>
-                <div class="col-md-6 pb-4">
-                    <div class="d-flex">
-                        <select class="form-control">
-                            <option>Öne Çıkanlar</option>
-                            <option>A dan Z ye</option>
-                            <option>Z den A ya</option>
-                        </select>
-                    </div>
                 </div>
             </div>
 
             <div class="row">
+                <?php if (count($products) > 0): ?>
                 <?php foreach ($products as $product): ?>
-                    <div class="col-md-4">
-                        <div class="card mb-4 product-wap rounded-0">
-                            <div class="card rounded-0">
-                                <img class="card-img rounded-0 img-fluid"
-                                    src="assets/img/<?php echo $product['image_url']; ?>">
-                                <div
-                                    class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-                                    <ul class="list-unstyled">
-                                        <li><a class="btn btn-success text-white mt-2"
-                                                href="shop-single.php?id=<?php echo $product['id']; ?>"><i
-                                                    class="far fa-eye"></i></a></li>
-                                        <li><a class="btn btn-success text-white mt-2"
-                                                href="cart.php?add=<?php echo $product['id']; ?>"><i
-                                                    class="fas fa-cart-plus"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="card-body">
+                <div class="col-12 col-md-4 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <a href="shop-single.php?id=<?php echo $product['id']; ?>">
+                            <img src="assets/img/products/<?php echo $product['image_url']; ?>"
+                                class="card-img-top card-img-custom" alt="<?php echo $product['name']; ?>">
+                        </a>
+                        <div class="card-body d-flex flex-column">
+                            <a href="shop-single.php?id=<?php echo $product['id']; ?>"
+                                class="h3 text-decoration-none text-dark fw-bold text-center mt-2"><?php echo $product['name']; ?></a>
+
+
+
+                            <div class="mt-auto text-center">
+                                <p class="h4 text-success fw-bold mb-0 pt-3"><?php echo $product['price']; ?> ₺</p>
                                 <a href="shop-single.php?id=<?php echo $product['id']; ?>"
-                                    class="h3 text-decoration-none"><?php echo $product['name']; ?></a>
-
-                                <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
-                                    <!-- <li>M/L/X/XL</li> -->
-                                    <li class="pt-2">
-                                        <span class="product-color-dot color-dot-red float-left rounded-circle ml-1"></span>
-                                        <span
-                                            class="product-color-dot color-dot-blue float-left rounded-circle ml-1"></span>
-                                        <span
-                                            class="product-color-dot color-dot-black float-left rounded-circle ml-1"></span>
-                                        <span
-                                            class="product-color-dot color-dot-light float-left rounded-circle ml-1"></span>
-                                    </li>
-                                </ul>
-
-                                <ul class="list-unstyled d-flex justify-content-center mb-1">
-                                    <li>
-                                        <i class="text-warning fa fa-star"></i>
-                                        <i class="text-warning fa fa-star"></i>
-                                        <i class="text-warning fa fa-star"></i>
-                                        <i class="text-muted fa fa-star"></i>
-                                        <i class="text-muted fa fa-star"></i>
-                                    </li>
-                                </ul>
-
-                                <p class="text-center mb-0"><?php echo $product['price']; ?> TL</p>
+                                    class="btn btn-success mt-3 w-100">İncele</a>
                             </div>
                         </div>
                     </div>
+                </div>
                 <?php endforeach; ?>
+                <?php else: ?>
+                <div class="col-12">
+                    <div class="alert alert-warning">Bu kategoride ürün bulunamadı.</div>
+                </div>
+                <?php endif; ?>
             </div>
-
-        </div>
-
-        <div div="row">
-            <ul class="pagination pagination-lg justify-content-end">
-                <li class="page-item disabled">
-                    <a class="page-link active rounded-0 mr-3 shadow-sm border-top-0 border-left-0" href="#"
-                        tabindex="-1">1</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" href="#">2</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link rounded-0 shadow-sm border-top-0 border-left-0 text-dark" href="#">3</a>
-                </li>
-            </ul>
         </div>
     </div>
+</div>
 
-</div>
-</div>
-<!-- End Content -->
 
 <?php include('footer.php'); ?>
