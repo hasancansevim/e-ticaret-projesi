@@ -5,7 +5,7 @@ require_once './includes/session_db.php';
 <html lang="en">
 
 <head>
-    <title>Zay Shop eCommerce</title>
+    <title>Zay Shop</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -82,10 +82,10 @@ require_once './includes/session_db.php';
                     <a class="nav-icon position-relative text-decoration-none" href="cart.php">
                         <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
                         <?php if ($total_qty > 0): ?>
-                            <span
-                                class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">
-                                <?php echo $total_qty; ?>
-                            </span>
+                        <span
+                            class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">
+                            <?php echo $total_qty; ?>
+                        </span>
                         <?php endif; ?>
                     </a>
                 </div>

@@ -71,26 +71,27 @@
 
 
 <script>
-    $(document).ready(function () {
-        $('#inputModalSearch').keyup(function () {
-            var txt = $(this).val();
+$(document).ready(function() {
+    $('#inputModalSearch').keyup(function() {
+        var txt = $(this).val();
 
-            if (txt == '') {
-                $('#search-results').html('');
-            } else {
-                $.ajax({
-                    url: "ajax_search.php",
-                    method: "POST",
-                    data: {
-                        query: txt
-                    },
-                    success: function (data) {
-                        $('#search-results').html(data);
-                    }
-                });
-            }
-        });
+        if (txt == '') {
+            $('#search-results').html('');
+        } else {
+            $.ajax({
+                url: "ajax_search.php",
+                method: "POST",
+                data: {
+                    query: txt
+                },
+                success: function(data) {
+                    $('#search-results').html(data);
+                }
+            });
+
+        }
     });
+});
 </script>
 </body>
 

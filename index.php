@@ -26,7 +26,7 @@ $featured_products = $stmt_feat->fetchAll(PDO::FETCH_ASSOC);
             <div class="container">
                 <div class="row p-5">
                     <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                        <img class="img-fluid" src="./assets/img/banner_img_01.jpg" alt="">
+                        <img class="img-fluid" src="./assets/img/banners/banner_img_01.jpg" alt="">
                     </div>
                     <div class="col-lg-6 mb-0 d-flex align-items-center">
                         <div class="text-align-left align-self-center">
@@ -42,29 +42,13 @@ $featured_products = $stmt_feat->fetchAll(PDO::FETCH_ASSOC);
             <div class="container">
                 <div class="row p-5">
                     <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                        <img class="img-fluid" src="./assets/img/banner_img_02.jpg" alt="">
+                        <img class="img-fluid" src="./assets/img/banners/banner_img_02.jpg" alt="">
                     </div>
                     <div class="col-lg-6 mb-0 d-flex align-items-center">
                         <div class="text-align-left">
                             <h1 class="h1">Özel Koleksiyon</h1>
                             <h3 class="h2">Tarzını Yansıt</h3>
                             <p>Yeni sezon ürünlerimizle modayı yakından takip edin.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="container">
-                <div class="row p-5">
-                    <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                        <img class="img-fluid" src="./assets/img/banner_img_03.jpg" alt="">
-                    </div>
-                    <div class="col-lg-6 mb-0 d-flex align-items-center">
-                        <div class="text-align-left">
-                            <h1 class="h1">Fırsat Ürünleri</h1>
-                            <h3 class="h2">%50'ye Varan İndirimler</h3>
-                            <p>Seçili ürünlerde geçerli indirimleri keşfetmek için hemen alışverişe başlayın.</p>
                         </div>
                     </div>
                 </div>
@@ -93,7 +77,8 @@ $featured_products = $stmt_feat->fetchAll(PDO::FETCH_ASSOC);
         <?php foreach ($categories as $category): ?>
         <div class="col-12 col-md-4 p-5 mt-3">
             <a href="shop.php?category_id=<?php echo $category['id']; ?>">
-                <img src="./assets/img/<?php echo $category['image_url'] ?>" class="rounded-circle img-fluid border">
+                <img src="./assets/img/categories/<?php echo $category['image_url'] ?>"
+                    class="rounded-circle img-fluid border">
             </a>
             <h5 class="text-center mt-3 mb-3"><?php echo $category['name'] ?></h5>
             <p class="text-center"><a class="btn btn-success"

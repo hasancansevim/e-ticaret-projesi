@@ -57,8 +57,6 @@
                             <div class="border p-2 rounded h-100">
                                 <a href="https://templatemo.com/tm-559-zay-shop" target="_blank"
                                     title="Orijinal Temayı Görüntüle">
-                                    <img src="assets/img/rapor/tema_ilk_hali.jpg" alt="Temanın İlk Hali"
-                                        class="img-fluid" style="max-height: 250px;">
                                 </a>
                                 <p class="mt-2 fw-bold text-muted mb-0">Temanın İlk Hali (Live)</p>
                                 <a href="https://templatemo.com/live/templatemo_559_zay_shop" target="_blank"
@@ -84,7 +82,7 @@
                         önlenmiştir.</p>
 
                     <div class="text-center my-4">
-                        <img src="assets/img/rapor/db_sema.png" alt="Veritabanı Şeması"
+                        <img src="assets/img/rapor/dbdiagram.png" alt="Veritabanı Şeması"
                             class="img-fluid border shadow-sm" style="max-height: 400px;">
                     </div>
                 </div>
